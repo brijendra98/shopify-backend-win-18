@@ -49,7 +49,6 @@ app.get('/results', (req, res) => {
               if(value.length && value.length.min && customer[key] && customer[key].length < value.length.min) {
                 //console.log(`${customer[key]} is shorter than ${value.length.min}`);
                 customer_result.invalid_fields.push(key);
-                customer_result.invalid_fields.push(key);
               }
               if(value.length && value.length.max && customer[key] && customer[key].length > value.length.max) {
                 //console.log(`${customer[key]} is longer than ${value.length.max}`);
