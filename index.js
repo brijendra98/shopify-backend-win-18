@@ -38,11 +38,11 @@ app.get('/results', (req, res) => {
           _.each(validations, function(validation){
             _.each(validation, function(value, key){
 
-              if(value.required && !customer[key]) {
+              if(value.required && customer[key] == undefined) {
                 customer_result.invalid_fields.push(key);
                 //console.log(`Customer number ${customer.id} does not have a ${key}`);
               }
-              if(value.type && customer[key] && value.type !== typeof(customer[key])) {
+              if(value.type && customer[key] !== undefined && value.type !== typeof(customer[key])) {
                 //console.log(`${customer[key]} should be a/an ${value.type}`);
                 customer_result.invalid_fields.push(key);
               }
