@@ -1,15 +1,17 @@
 {
   "name": "shopify-backend-win-17",
   "version": "1.0.0",
-  "description": "Shopify's Backend Development Challenge for the Winter 2017 term",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Brijendra Nag",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.3",
+    "request": "^2.81.0",
+    "underscore": "^1.8.3"
   }
 }
