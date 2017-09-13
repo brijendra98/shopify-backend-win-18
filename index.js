@@ -1,22 +1,20 @@
 'use strict'
 const _ = require('underscore');
 const express = require('express');
-const app = express();
 const request = require('request');
+const app = express();
 
-
-const server = app.listen(process.env.PORT || 3000, () => {
+const server = app.listen(process.env.PORT || 7467, () => {
     console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
-
 
 app.get('/results', (req, res) => {
   var obtained = 0;
   var total;
+  var validations;
   var result = {
     "invalid_customers": []
   };
-  var validations;
 
   function get_data(page_num) {
       var options = {
@@ -59,6 +57,13 @@ app.get('/results', (req, res) => {
             });
           });
           if(customer_result.invalid_fields.length) {
+            function de_duplicate(arr) {
+                var seen = {};
+                return arr.filter(function(item) {
+                    return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+                });
+            }
+            customer_result.invalid_fields = de_duplicate(customer_result.invalid_fields);
             result.invalid_customers.push(customer_result);
           }
         });
