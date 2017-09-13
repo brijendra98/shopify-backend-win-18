@@ -3,11 +3,10 @@ const _ = require('underscore');
 const express = require('express');
 const app = express();
 
-const port = 7467;
+//const port = 7467;
 
-app.listen(port, () => {
-    console.log('We are live on ' + port);
-
+const server = app.listen(process.env.PORT || 7467, () => {
+    console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
 
 app.get('/', (req, res) => {
