@@ -8,7 +8,7 @@ const server = app.listen(process.env.PORT || 7467, () => {
     console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
 
-app.get('/results', (req, res) => {
+app.get('/', (req, res) => {
   var obtained = 0;
   var total;
   var validations;
@@ -42,7 +42,7 @@ app.get('/results', (req, res) => {
                 customer_result.invalid_fields.push(key);
                 //console.log(`Customer number ${customer.id} does not have a ${key}`);
               }
-              if(value.type && customer[key] !== undefined && value.type !== typeof(customer[key])) {
+              if(value.type && customer[key] != undefined && value.type !== typeof(customer[key])) {
                 //console.log(`${customer[key]} should be a/an ${value.type}`);
                 customer_result.invalid_fields.push(key);
               }
@@ -72,7 +72,8 @@ app.get('/results', (req, res) => {
         }
         else {
           console.log(JSON.stringify(result));
-          res.status(200).send(result);
+          app.set('json spaces', 4);
+          res.status(200).json(result);
           //process.exit();
         }
       });
